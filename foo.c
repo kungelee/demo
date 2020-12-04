@@ -2,9 +2,8 @@
 
 int main(void)
 {
-	int a[2][3];
 	
-	
+	printf("hello,world");	
 	return 0;
 }
 
