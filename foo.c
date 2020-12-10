@@ -1,24 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[])
-{
-	FILE *fp;
-	if (argc < 2) {
-		fprintf(stderr, "Usage: %s <dest_file>\n", argv[0]);
+int main() {
+	int x = 0;
+	if (scanf("%d", &x) != 1 || (x <= -5) || (x >= 8)) {
+		printf("scanf() error!\n");
 		exit(1);
 	}
-	 printf("hello,world\n");
-	fp = fopen(argv[1], "r");
-	if (fp == NULL) {
-		perror("fopen()");
-		exit(1);
-	}
-	
-	fseek(fp, 0, SEEK_END);
-	printf("%ld\n", ftell(fp));
-		
+	int y = 0;
+	int codition = 0;
+	codition = (x > -5 && x < 0) ? -1 : 1;
 
-	
+	switch (codition) {
+	case -1:
+		y  = x - 1;
+		break;
+	case 0:
+		y = 0;
+		break;
+	case 1:
+		y = x + 1;
+	default:
+		break;
+
+	}
+
+	printf("y = %d\n", y);
+
 	exit(0);
 }
