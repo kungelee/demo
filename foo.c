@@ -1,28 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int isprime(int n)
+int main(int argc, char *argv[])
 {
-	int i;
-	for (i = 2; i < n; i++) {
-		if (n % i == 0)
-			break;
+	FILE *fp;
+	if (argc < 2) {
+		fprintf(stderr, "Usage: %s <dest_file>\n", argv[0]);
+		exit(1);
 	}
-
-	return i == n;
-}
-
-int main(void)
-{
-	int x;
-	for (x = 1; x <= 1000; x++) {
-		static int count = 0;
-		if (isprime(x)) {
-			if (count % 10 == 0 && count != 0)
-				printf("\n");
-			printf("%4d", x);
-			count++;
-		}
+	 printf("hello,world\n");
+	fp = fopen(argv[1], "r");
+	if (fp == NULL) {
+		perror("fopen()");
+		exit(1);
 	}
-	return 0;
-}
+	
+	fseek(fp, 0, SEEK_END);
+	printf("%ld\n", ftell(fp));
+		
 
+	
+	exit(0);
+}
