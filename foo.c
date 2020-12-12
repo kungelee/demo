@@ -34,6 +34,7 @@ int main()
 		},
 	};
 
+	printf("Skill output:\n");
 	//打印技能
 	printf("name = %s, color = %s\n", arr[0].name, arr[0].color);
 	arr[0].say();
