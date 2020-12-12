@@ -2,35 +2,44 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define LEN 80
+int  //返回连续数字的个数
+count_digit(const char *ss)
+{
+	int count = 0;
+	while (*ss && isdigit(*ss)) {
+		count++;
+		ss++;
+	}
+	return count;
+}
 int divide (char *ss, int *a)
 {
 	int i = 0;
 	while (*ss) {
 		if (*ss == '-') {
-			int move = 0; //指针移动的字节数
 			int n = 0;
+			int len =  count_digit(ss + 1);  //从'-'后开始
 			
-			move++; //移动'-'号下一个字符偏移位置
-			while (isdigit(*(ss + move))) {
-				n = n * 10 + (*(ss + move) - '0');
-				move++;
+			for (int i = 1; i <= len; i++) { //从'-'后开始
+				n = n * 10 + (ss[i] - '0');
 			}
-			if (isdigit(*(ss + 1))) { //存在过数字
+			if (n > 0) { 
 				a[i++] = -n;
-				ss += move - 1; //去掉最后一个不满足的
+				ss += len + 1;
 			}
 		} else if (isdigit(*ss)) {
-			int move = 0;
 			int n = 0;
-			while (isdigit(*(ss + move))) {
-				n = n * 10 + (*(ss + move) - '0');
-				move++;
+			int len  =  count_digit(ss);
+			
+			for (int i = 0; i < len; i++) { //从第一位开始
+				n = n * 10 + (ss[i] - '0');
 			}
-			ss += move;
+			
+			ss += len;
 			a[i++] = n;
+		} else {
+			ss++;
 		}
-		
-		ss++;
 	}
 	return i;  
 }
