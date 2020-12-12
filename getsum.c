@@ -23,7 +23,7 @@ int divide (char *ss, int *a)
 			for (int i = 1; i <= len; i++) { //从'-'后开始
 				n = n * 10 + (ss[i] - '0');
 			}
-			if (n > 0) { 
+			if (len > 0) { 
 				a[i++] = -n;
 				ss += len + 1;
 			}
