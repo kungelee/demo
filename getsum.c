@@ -2,46 +2,33 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define LEN 80
-int  //返回连续数字的个数
-count_digit(const char *ss)
-{
-	int count = 0;
-	while (*ss && isdigit(*ss)) {
-		count++;
-		ss++;
-	}
-	return count;
-}
+
 int divide (char *ss, int *a)
 {
-	int i = 0;
-	while (*ss) {
-		if (*ss == '-') {
-			int n = 0;
-			int len =  count_digit(ss + 1);  //从'-'后开始
-			
-			for (int i = 1; i <= len; i++) { //从'-'后开始
-				n = n * 10 + (ss[i] - '0');
-			}
-			if (len > 0) { 
-				a[i++] = -n;
-				ss += len + 1;
-			}
-		} else if (isdigit(*ss)) {
-			int n = 0;
-			int len  =  count_digit(ss);
-			
-			for (int i = 0; i < len; i++) { //从第一位开始
-				n = n * 10 + (ss[i] - '0');
-			}
-			
-			ss += len;
-			a[i++] = n;
-		} else {
-			ss++;
+	int count = 0; //字符串中数字串的个数
+	
+	for (int i = 0; ss[i]; i++) {
+		int pos = i;   //当前位置
+		int number = 0;
+
+		if (!isdigit(ss[i]))  //不是数字就直接跳过下面的所有语句
+			continue;
+		
+		while (isdigit(ss[i])) {
+			number = number * 10 + (ss[i] - '0');
+			i++;
 		}
+		i--; //复位i到最后不满足条件的前一位置,防止for i++越界
+		
+		if (pos > 0 && ss[pos - 1] == '-') {
+			a[count++] = -number;
+		} else {
+			a[count++] = number;
+		}
+		
+		
 	}
-	return i;  
+	return count;  
 }
 
 int getSum(int *a, int size)
