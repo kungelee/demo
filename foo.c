@@ -1,45 +1,71 @@
+/*
+ *Compile with GCC 10.2 
+ *-std=c99
+ *2020-12-15 01:52:22 by jeff lee.
+ */
 #include <stdio.h>
 #include <stdlib.h>
-#define STU_NUM 5
-int main(void)
+#include <ctype.h>
+#include <stdbool.h>
+
+int count_space(const char *src)
+{
+  int count = 0;
+
+  while (*src) {
+    if (isspace(*src))
+      count++;
+    src++;
+  }
+  
+  return count;
+}
+
+
+int count_char(const char *src)
 {
 
-  float score[STU_NUM] = {88.0, 78.5, 99, 77, 99};
-  char name[5][20] = {
-    "you_rong", 
-    "dog_brother", 
-    "wang_cai", 
-    "tie_dan",
-    "miss_qi"
-  };
-  
-  int rank[STU_NUM] = {0, 1, 2, 3, 4};
+  int count = 0;
 
-  for (int i = 0; i < STU_NUM -1; i++) {
-    for (int j = i + 1; j < STU_NUM; j++) {
-      if (score[i] < score[j]) {
-	float temp = score[i];
-	score[i] = score[j];
-	score[j] = temp;
+  while(*src) {
+    if(isalpha(*src))
+      count++;
+    src++;
+  }
 
-	int tmp = rank[i];
-	rank[i] = rank[j];
-	rank[j] = tmp;
+  return count;
+}
+
+int count_word(const char *src)
+{
+  int count = 0;
+  bool in = false;
+
+  while (*src) {
+    if (isalpha(*src)) {
+      if (in == false)
+	in = true;
+    } else {
+      if (in == true) {
+	in = false;
+	count++;
       }
     }
-
+    src++;
   }
   
+  return isalpha(*--src) ? count + 1 : count; //fix bug, last word, no space
+}
 
-  printf("Rank list:\n");
-  for (int i = 0; i < STU_NUM; i++) {
-    printf("%20s: %.2f\n", name[rank[i]], score[i]);
-  }
-  /*
 
-  for (int i = 0; i < 5; i++)
-    printf("%f\n", score[i]);
-  */
+int main(void)
+{
+  char msg[] = "hello, world";
+
+  printf("space = %d, charactor = %d, word = %d\n",
+	 count_space(msg),
+	 count_char(msg),
+	 count_word(msg));
 
   return 0;
 }
