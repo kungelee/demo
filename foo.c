@@ -1,71 +1,28 @@
-/*
- *Compile with GCC 10.2 
- *-std=c99
- *2020-12-15 01:52:22 by jeff lee.
- */
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <stdbool.h>
 
-int count_space(const char *src)
-{
-  int count = 0;
-
-  while (*src) {
-    if (isspace(*src))
-      count++;
-    src++;
-  }
-  
-  return count;
-}
-
-
-int count_char(const char *src)
+bool is_up_number(int n)
 {
 
-  int count = 0;
-
-  while(*src) {
-    if(isalpha(*src))
-      count++;
-    src++;
+  if (n < 0)
+    n = - n;
+  if (n / 10 == 0)
+    return true;
+  else {
+    int r = n % 10;
+    n /= 10;
+    return (r > n % 10 ) && is_up_number(n);
   }
-
-  return count;
-}
-
-int count_word(const char *src)
-{
-  int count = 0;
-  bool in = false;
-
-  while (*src) {
-    if (isalpha(*src)) {
-      if (in == false)
-	in = true;
-    } else {
-      if (in == true) {
-	in = false;
-	count++;
-      }
-    }
-    src++;
-  }
-  
-  return isalpha(*--src) ? count + 1 : count; //fix bug, last word, no space
 }
 
 
 int main(void)
 {
-  char msg[] = "hello, world";
-
-  printf("space = %d, charactor = %d, word = %d\n",
-	 count_space(msg),
-	 count_char(msg),
-	 count_word(msg));
+  int n;
+  while (scanf("%d", &n) != EOF) {
+    printf("%*d: %s\n", -10,  n, is_up_number(n) ? "true" : "false");
+  }
 
   return 0;
 }
