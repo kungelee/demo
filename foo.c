@@ -1,28 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-bool is_up_number(int n)
+void reverse_print(int arr[], int size)
 {
-
-  if (n < 0)
-    n = - n;
-  if (n / 10 == 0)
-    return true;
-  else {
-    int r = n % 10;
-    n /= 10;
-    return (r > n % 10 ) && is_up_number(n);
+  while (--size >= 0) {
+    if (size == 0)
+      printf("%d\n", arr[0]);
+    else
+      printf("%d ", arr[size]);
   }
+
 }
 
 
 int main(void)
 {
-  int n;
-  while (scanf("%d", &n) != EOF) {
-    printf("%*d: %s\n", -10,  n, is_up_number(n) ? "true" : "false");
+  int size = 0;
+
+  while (scanf("%d", &size) != EOF) {
+    int arr[size];
+    for (int i = 0; i < size; i++) {
+      scanf("%d", &arr[i]);
+    }
+    reverse_print(arr, size);
   }
 
-  return 0;
+    return 0;
 }
