@@ -1,71 +1,76 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include <stdbool.h>
 
-//3)return the max number address
-int *max(int arr[], int size)
+typedef struct node {
+	int data;
+	struct node *next ;
+} Node;
+
+//init list  and assign value
+bool init_list(Node** head, int const *data, size_t len)
 {
-	int the_max = arr[0];
-	int index = 0;
-	int i = 0;
-	for (i = 1; i < size; i++) {
-		if (the_max < arr[i]) {
-			the_max = arr[i];
-			index = i;
+	Node* current;
+	Node* tail;
+	current = tail = NULL;
+	for (size_t i = 0; i < len; i++) {
+		current = (Node *) malloc(sizeof(Node));
+		if (NULL == current)
+			return false;
+		current->next = NULL;
+		current->data = data[i];
+		if (NULL == *head) {
+			*head = current;
+			tail = current;
+		} else {
+			tail->next = current;
+			tail = current;
 		}
 	}
-	return &arr[index];
-	
+	return true;
 }
 
-
-//3)return the min number address
-int *min(int arr[], int size)
+//print list
+void print_list(Node const *head)
 {
-	int the_min = arr[0];
-	int index = 0;
-	int i = 0;
-	for (i = 1; i < size; i++) {
-		if (the_min > arr[i]) {
-			the_min = arr[i];
-			index = i;
-		}
+	printf("%s", "START");
+	while (head != NULL) {
+		printf(" -> [%d]", head->data);
+		head = head->next;
 	}
-	return &arr[index];
-	
+	printf("%s\n", "-> END");
 }
 
-
-
+//not find return 0
+size_t find(Node const *head, int key)
+{
+	size_t index = 1;
+	while ((head != NULL) && (head->data != key)) {
+		index++;
+		head = head->next;
+	}
+	return (head == NULL) ? 0 : index;
+}
 int main(void)
 {
-	//1)define ten integer numbers 
-	int arr[10] = {0};
-	int i;
-	
-	//2)input ten numbers
-	printf("Enter ten numbers:\n");
-	for (i = 0; i < 10; i++)
-		scanf("%d", &arr[i]);
-	
-	//4)use pointer record the max  and min address
-	int *max_ptr = max(arr, 10);
-	int *min_ptr = min(arr, 10);
-	
-	//5)print original array
-	printf("Before swap:\n");
-	for (i = 0; i < 10; i++)
-		printf("%d ", arr[i]);
-	
-	//swap
-	int temp = *max_ptr;
-	*max_ptr = *min_ptr;
-	*min_ptr = temp;
-	
-	
-	//5) print swap  array
-	printf("\nAfter swap:\n");
-	for (i = 0; i < 10; i++)
-		printf("%d ", arr[i]);
-	
+	Node* head;
+	int key;
+	int data[]= {10,7,12,66,99};
+
+	head = NULL;
+	if (! init_list(&head, data, sizeof(data)/sizeof(data[0])))
+		return 1;
+
+	print_list(head);
+	printf("Enter search key: ");
+	if (scanf("%d", &key) != 1)
+		return 1;
+
+	size_t index = find(head,key);
+	if(0 == index)
+		printf("Not Found\n");
+	else
+		printf("The index is: %u\n", index);
+
 	return 0;
 }
