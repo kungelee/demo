@@ -23,6 +23,8 @@ int main(void)
     printf("%s %d\n", a.name, a.age);
     printf("%s %d\n", p->name, p->age);
     printf("%s %d\n", q->name, q->age);
+    printf("%s %d\n", q->name, q->age);
+
 
     return 0;
 }
