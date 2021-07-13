@@ -1,52 +1,82 @@
-/*
-将1,2....,9共9个数分成3组，分别组成3个三位数，
-且使这3个三位数构成1 : 2 : 3的比例，
-试求出所有满足条件的3个三位数。
-2021年2月3日00:57:59
-*/
 #include <stdio.h>
-int main()
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#define STU_SIZ  5 //分配节点数量
+
+/*学生数据结构定义*/
+typedef struct student {
+	char name[32];      
+ 	int  math;           
+	int  english;        
+	int  data_structure; 
+}student_t;
+
+/*输入数据*/
+void input(student_t *item)
 {
-    for(int n = 100; n < 333; n++) {
-        /* 生成满足条件的三个数 */
-        int a = n;
-        int b = n * 2;
-        int c = n * 3;
-
-        /* 保存待验证的三个数 */
-        const int a1 = a;
-        const int b1 = b;
-        const int c1 = c;
-        /* 统计余数出现的次数 */
-        int cnt_number[10] = {0};
-        while(a) {
-            cnt_number[a % 10]++;
-            cnt_number[b % 10]++;
-            cnt_number[c % 10]++;
-
-            /* 数字中含有零，条件不满足 */
-            if (cnt_number[0] != 0)
-                break;
-
-            a /= 10;
-            b /= 10;
-            c /= 10;
-
-        }
-        /* 有零值,直接跳过验证 */
-        if (cnt_number[0] != 0)
-            continue;
-
-        int len = 0;
-        for(int i = 1; i < 10; i++) {
-            /* 只统计出现过一次的情况 */
-            if(1 != cnt_number[i])
-                break;
-            len++;
-        }
-        if(9 == len) {
-            printf("%d, %d, %d\n", a1, b1, c1);
-        }
-    }
-    return 0;
+	scanf("%s%d%d%d", item->name,
+					&item->math,
+					&item->english,
+					&item->data_structure);
 }
+
+/*检查数据的合法性*/
+bool is_valid(const student_t *item)
+{
+	return ((item->name[0] != '\0') &&
+			(item->math > 0 && item->math <= 100) &&
+			(item->english > 0 && item->english <= 100) &&
+			(item->data_structure > 0 && item->data_structure <= 100));
+	
+}
+
+/*输出数据*/
+void output(const student_t *item)
+{
+	printf("%s\t%d\t%d\t%d",
+			item->name,
+			item->math,
+			item->english,
+			item->data_structure);
+			
+}
+
+/*clear_buf*/
+void clear_buf(void)
+{
+	int ch = 0;
+	while ((ch = getchar()) != '\n')
+		;
+}
+
+int main(void)
+{
+	student_t *stu_head = (student_t *)malloc(sizeof(student_t) * STU_SIZ); 
+	
+	if (stu_head == NULL) {
+		perror("malloc");
+		exit(1);
+	}
+	memset(stu_head, 0, sizeof(student_t) *  STU_SIZ);
+	
+	/*输入数据*/
+	printf("|Name| Math | English | Data Sturcture |\n");
+	for (int i = 0;  i < STU_SIZ; ++i) {
+		printf("STU %d: ", i + 1);
+		input(&stu_head[i]);
+		if (!is_valid(&stu_head[i])) {
+			memset(&stu_head[i], 0, sizeof(student_t));
+			clear_buf();
+			i--;
+			printf("Enter error, try again.\n");	
+		}	
+	}
+	/*输出数据*/
+	printf("\n|Name| Math | English | Data Sturcture |\n");
+	for (int i = 0;  i < STU_SIZ; ++i) {
+		output(&stu_head[i]);
+		putchar('\n');
+	}
+}
+
