@@ -15,10 +15,11 @@ typedef struct student {
 /*输入数据*/
 void input(student_t *item)
 {
-	scanf("%s%d%d%d", item->name,
-					&item->math,
-					&item->english,
-					&item->data_structure);
+	scanf("%s%d%d%d",
+	      	item->name,
+		&item->math,
+		&item->english,
+		&item->data_structure);
 }
 
 /*检查数据的合法性*/
@@ -42,7 +43,7 @@ void output(const student_t *item)
 			
 }
 
-/*clear_buf*/
+/*清除无效缓冲区输入*/
 void clear_buf(void)
 {
 	int ch = 0;
