@@ -5,20 +5,20 @@ copy　code.
 */
 #include <stdio.h>
 
-typedef struct persion {
+typedef struct person {
     const char *name;
     int age;
-} persion[1], persion_t;
+} person[1], person_t;
 
 int main(void)
 {
-    struct persion a;
-    struct persion *p = NULL;
-    struct persion *q = NULL;
-
-    a = (persion_t){"persion1", 25};
-    p = (persion){{"persion2", 27}};
-    q = (struct persion[]){{"persion3", 22}};
+    struct person a;
+    struct person *p = NULL;
+    struct person *q = NULL;
+    
+    a = (person_t){"person1", 25};
+    p = (person){{"person2", 27}};
+    q = (struct person[]){{"person3", 22}};
 
     printf("%s %d\n", a.name, a.age);
     printf("%s %d\n", p->name, p->age);
