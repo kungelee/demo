@@ -34,9 +34,12 @@ int divide (char *ss, int *a)
 int getSum(int *a, int size)
 {
 	int sum = 0;
-	while (--size >= 0) {
+        for (int i = 0; i < size; ++i) {
+          sum += a[i];
+        }
+        /*	while (--size >= 0) {
 		sum += a[size];
-	}
+                }*/
 	
 	return sum;
 }
