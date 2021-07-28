@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define LEN 80
-
+/*
+分离ss出字符中的整数，并到数组
+a中，返回找的数字个数
+*/
 int divide (char *ss, int *a)
 {
 	int count = 0; //字符串中数字串的个数
@@ -30,6 +33,9 @@ int divide (char *ss, int *a)
 	return count;
 }
 
+/*
+统计数组元素之和
+*/
 int getSum(int *a, int size)
 {
 	int sum = 0;
