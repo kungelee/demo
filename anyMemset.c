@@ -5,7 +5,7 @@
 #include <stdio.h>
 #define NELEM(arr) (sizeof(arr)/sizeof(arr[0]))
 
-//fuc call for any type
+//fill the value for any type
 void *anymemset(void *s, void *val, size_t n, void* (*fun)(void *, void *,  size_t))
 {
   return fun(s, val, n);
