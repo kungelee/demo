@@ -3,8 +3,8 @@
 #include <ctype.h>
 #define LEN 80
 /*
-找出ss字符串中的整数，并存储到数组
-a中，函数返回找到的整数总个数
+找出字符ss中的整数，并存储到数
+组a中，函数返回找到的整数个数
 */
 int divide (char *ss, int *a)
 {
