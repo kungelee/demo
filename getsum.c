@@ -3,8 +3,8 @@
 #include <ctype.h>
 #define LEN 80
 /*
-分离ss出字符中的整数，并到数组
-a中，返回找的数字个数
+找出ss字符串中的整数，并存储到数组
+a中，函数返回找到的整数总个数
 */
 int divide (char *ss, int *a)
 {
@@ -34,7 +34,7 @@ int divide (char *ss, int *a)
 }
 
 /*
-统计数组元素之和
+统计整数数组元素之和
 */
 int getSum(int *a, int size)
 {
