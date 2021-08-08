@@ -33,7 +33,7 @@ void init(int *arr, int size)
 {
     srand((unsigned)time(NULL));
     for (int i = 0; i < size; ++i)
-        arr[i] = rand() % INT_RANGE;   //0~32767
+        arr[i] = rand() % INT_RANGE;   //0~32767-1
 }
 
 //out puts array info
