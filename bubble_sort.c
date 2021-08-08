@@ -7,7 +7,7 @@
 void bubble_sort(int *arr, int size);
 void swap(int *a, int *b);
 void init(int *arr, int size);
-void show(int *arr, int size);
+void show(const int *arr, int size);
 
 //bubble sort, from small to big
 void bubble_sort(int *arr, int size)
@@ -33,11 +33,11 @@ void init(int *arr, int size)
 {
     srand((unsigned)time(NULL));
     for (int i = 0; i < size; ++i)
-        arr[i] = rand() % INT_RANGE;   //0~32767
+        arr[i] = rand() % INT_RANGE;   //0~ INT_RANGE-1
 }
 
 //out puts array info
-void show(int *arr, int size)
+void show(const int *arr, int size)
 {
     for (int i = 0; i < size; ++i)
         fprintf(stdout, "%d\n", arr[i]);
