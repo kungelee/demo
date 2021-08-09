@@ -28,7 +28,7 @@ void swap(int *a, int *b)
     *b = t;
 }
 
-//rand a int number
+//random generate an integer number
 void init(int *arr, int size)
 {
     srand((unsigned)time(NULL));
@@ -36,7 +36,7 @@ void init(int *arr, int size)
         arr[i] = rand() % INT_RANGE;   //0~ INT_RANGE-1
 }
 
-//output array info
+//output array elements
 void show(const int *arr, int size)
 {
     for (int i = 0; i < size; ++i)
