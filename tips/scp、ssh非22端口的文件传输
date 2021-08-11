@@ -1,0 +1,16 @@
+ssh ：（命令中的 p 小写）
+
+ssh -p 端口号 root@服务器ip
+
+ 
+scp: （命令中的 P 大写）（-r表示将目录下的目录递归拷贝。“.*”是将所有文件包括隐藏文件。）
+
+上传文件到服务器
+scp -P 端口号 /Users/apple/Desktop/a.pdf root@服务器ip:/home/wwwroot 
+
+scp -P 端口号 -r /Users/apple/Desktop/.* root@服务器ip:/home/wwwroot/
+
+下载服务器目录里的index.html文件到本地桌面上
+scp -P 端口号 root@服务器ip:/home/wwwroot/index.html /Users/apple/Desktop/
+
+scp -P 端口号 -r root@服务器ip:/home/wwwroot/.* /Users/apple/Desktop/
