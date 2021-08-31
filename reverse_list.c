@@ -8,21 +8,16 @@ struct demo {
 } item[3] = { {1, &item[1]}, {2, &item[2]}, {3, NULL} };
 
 demo* reverse(demo* head);
-
+void show(const demo *head);
 int main(void)
 {
   demo* head = item;
-  while (head != NULL) {
-    printf("%d\n", head->no);
-    head = head->next;
-  }
 
-  printf("\n------------reverse the list------------\n");
+  show(head);
+  printf("------------reverse the list------------\n");
   head = reverse(item);
-  while (head != NULL) {
-    printf("%d\n", head->no);
-    head = head->next;
-  }
+  show(head);
+
   return 0;
 }
 
@@ -43,4 +38,12 @@ demo* reverse(demo* head)
   }
 
   return head;
+}
+
+void show(const demo *head)
+{
+  while (head != NULL) {
+    printf("%d\n", head->no);
+    head = head->next;
+  }
 }
