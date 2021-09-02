@@ -7,12 +7,11 @@ void flushstdin(void)
 }
 
 
-int get_unsigned_int(const char *prompt,unsigned *u)
+int input_unsigned_int(const char *prompt,unsigned *u)
 {
 	printf("%s: ", prompt);
 	fflush(stdout);
-	int ret = scanf("%u", u);
-	return ret;
+	return scanf("%u", u);
 }
 
 
@@ -20,7 +19,7 @@ int main(void)
 {
 	
 	unsigned n;
-	while (get_unsigned_int("Enter an integer", &n) != 1) {
+	while (input_unsigned_int("Enter an integer", &n) != 1) {
 		fprintf(stderr, "%s\n", "Input error, try again!!");
 		flushstdin();
 	}
