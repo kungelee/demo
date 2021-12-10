@@ -1,0 +1,7 @@
+;;lispbox\emacs-23.2\site-lisp
+;;lispbox.el
+;;file into ...\lispbox-0.7\emacs-23.2\lisp
+
+;; add bottom (optional)
+(require 'rainbow-delimiters)
+(add-hook 'slime-repl-mode-hook 'rainbow-delimiters-mode)
