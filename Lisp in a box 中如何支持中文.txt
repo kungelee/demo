@@ -1,0 +1,19 @@
+基础环境：windows 10
+
+下载Lisp in a Box后，解压到自定文文件夹，运行lispbox.bat
+
+在CL-USER>下输入“hello，world"，输出正常。
+
+输入”中国，你好！"，报错。
+
+解决方法：
+
+1、找到文件夹下emacs-23.2\site-lisp\lispbox.el，打开
+
+2、找到：(require 'slime)这一行，光标定位到这一行行尾，回车
+
+3、输入：(setq slime-net-coding-system 'utf-8-unix)
+
+4、保存，重启程序。
+
+原因分析：默认的Emacs没有开启UTF-8字符集支持，所以并不支持中文，甚至中文注释也不行。
