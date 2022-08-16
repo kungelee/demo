@@ -1,0 +1,2 @@
+emacs 编译 如何把 emacs 的 el 文件编译为 elc 文件
+emacs 打开该文件之后直接M-x byte-compile-file，选中该文件
