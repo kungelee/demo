@@ -1,0 +1,16 @@
+# 在c-mode下,选中区或，按align
+
+# For example select the following lines:
+int x = 3;
+double y = 9.0;
+unsigned int z = 6;
+const char c = 'A';
+
+# And type M-x align RET. The result is:
+int          x = 3;
+double       y = 9.0;
+unsigned int z = 6;
+const char   c = 'A';
+
+# 参考链接
+https://stackoverflow.com/questions/6217153/aligning-or-prettifying-code-in-emacs
