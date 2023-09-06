@@ -13,3 +13,6 @@ git config --list
 
 参考链接
 https://www.jianshu.com/p/200a7a4d60d2
+
+git设置代理服务器并查看是否设置成功
+git config --get --global http.proxy
